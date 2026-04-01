@@ -204,8 +204,11 @@ export function renderSessionLine(ctx) {
         const usage = ctx.stdin.context_window?.current_usage;
         if (usage) {
             const input = formatTokens(usage.input_tokens ?? 0);
-            const cache = formatTokens((usage.cache_creation_input_tokens ?? 0) + (usage.cache_read_input_tokens ?? 0));
-            line += label(` (in: ${input}, cache: ${cache})`, colors);
+            const cacheRead = usage.cache_read_input_tokens ?? 0;
+            const cacheCreate = usage.cache_creation_input_tokens ?? 0;
+            const cache = formatTokens(cacheRead + cacheCreate);
+            const hitRate = (cacheRead + cacheCreate) > 0 ? Math.round(cacheRead / (cacheRead + cacheCreate) * 100) : 0;
+            line += label(` (in: ${input}, cache: ${cache}, hit: ${hitRate}%)`, colors);
         }
     }
     return line;
