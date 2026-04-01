@@ -13,7 +13,7 @@ Inside a Claude Code instance, run the following commands:
 
 **Step 1: Add the marketplace**
 ```
-/plugin marketplace add jarrodwatts/claude-hud
+/plugin marketplace add doudiu4ever/claude-hud
 ```
 
 **Step 2: Install the plugin**
@@ -292,7 +292,7 @@ To disable, set `display.showUsage` to `false`.
 ## Development
 
 ```bash
-git clone https://github.com/jarrodwatts/claude-hud
+git clone https://github.com/doudiu4ever/claude-hud
 cd claude-hud
 npm ci && npm run build
 npm test
@@ -310,4 +310,4 @@ MIT — see [LICENSE](LICENSE)
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=jarrodwatts/claude-hud&type=Date)](https://star-history.com/#jarrodwatts/claude-hud&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=doudiu4ever/claude-hud&type=Date)](https://star-history.com/#doudiu4ever/claude-hud&Date)
