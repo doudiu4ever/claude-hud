@@ -77,7 +77,21 @@ Questions: **Turn Off → Turn On → Git Style → Layout/Reset → Custom Line
 **Note:** If preset has all items ON (Full), Q4 shows "Nothing to enable - Full preset has everything!"
 If preset has all items OFF (Minimal), Q3 shows "Nothing to disable - Minimal preset is already minimal!"
 
-### Q5: Custom Line (optional)
+### Q5: Token Breakdown Threshold (only if Token breakdown is ON after Q3/Q4)
+- header: "Token Breakdown Threshold"
+- question: "Show token breakdown (cache read/write/hit rate) when context reaches what %?"
+- multiSelect: false
+- options:
+  - "Always (0%)" - Always show token breakdown
+  - "50%" - Show at half context
+  - "70%" - Show at warning level
+  - "85% (default)" - Show at high context
+  - "Enter custom %" - Ask user for a number via AskUserQuestion (0-100)
+
+If user chooses "Enter custom %", use AskUserQuestion to get their number. Save as `display.tokenBreakdownThreshold` in config.
+If token breakdown is OFF, skip this question.
+
+### Q6: Custom Line (optional)
 - header: "Custom Line"
 - question: "Add a custom phrase to display in the HUD? (e.g. a motto, max 80 chars)"
 - multiSelect: false
@@ -143,7 +157,22 @@ Info items (Counts, Tokens, Usage, Speed, Duration) can be turned off via "Reset
   - "Reset to Full" - Enable everything
   - "Reset to Essential" - Activity + git only
 
-### Q5: Custom Line (optional)
+### Q5: Token Breakdown Threshold (only if Token breakdown is currently ON or just turned ON)
+- header: "Token Breakdown Threshold"
+- question: "Show token breakdown (cache read/write/hit rate) when context reaches what %? (currently: {tokenBreakdownThreshold}%)"
+- multiSelect: false
+- options:
+  - "Keep current" - No change
+  - "Always (0%)" - Always show token breakdown
+  - "50%" - Show at half context
+  - "70%" - Show at warning level
+  - "85% (default)" - Show at high context
+  - "Enter custom %" - Ask user for a number via AskUserQuestion (0-100)
+
+If user chooses "Enter custom %", use AskUserQuestion to get their number. Save as `display.tokenBreakdownThreshold` in config.
+If token breakdown is OFF (and not turned ON in Q2), skip this question.
+
+### Q6: Custom Line (optional)
 - header: "Custom Line"
 - question: "Update your custom phrase? (currently: '{current customLine or none}')"
 - multiSelect: false
@@ -208,6 +237,7 @@ If user chooses "Remove", set `display.customLine` to `""` in config.
 | Git status | `gitStatus.enabled` |
 | Config counts | `display.showConfigCounts` |
 | Token breakdown | `display.showTokenBreakdown` |
+| Token breakdown threshold | `display.tokenBreakdownThreshold` |
 | Output speed | `display.showSpeed` |
 | Usage limits | `display.showUsage` |
 | Usage bar style | `display.usageBarEnabled` |
@@ -294,6 +324,7 @@ Merge with existing config, preserving:
 - `pathLevels` (not in configure flow)
 - `display.usageThreshold` (advanced config)
 - `display.environmentThreshold` (advanced config)
+- `display.tokenBreakdownThreshold` (set via Q5, otherwise preserved)
 - `colors` (advanced manual palette overrides)
 
 **Migration note**: Old configs with `layout: "default"` or `layout: "separators"` are automatically migrated to the new `lineLayout` + `showSeparators` format on load.
