@@ -68,6 +68,7 @@ export interface HudConfig {
     showDuration: boolean;
     showSpeed: boolean;
     showTokenBreakdown: boolean;
+    tokenBreakdownThreshold: number;
     showUsage: boolean;
     usageBarEnabled: boolean;
     showTools: boolean;
@@ -105,6 +106,7 @@ export const DEFAULT_CONFIG: HudConfig = {
     showDuration: false,
     showSpeed: false,
     showTokenBreakdown: true,
+    tokenBreakdownThreshold: 85,
     showUsage: true,
     usageBarEnabled: true,
     showTools: false,
@@ -292,6 +294,9 @@ export function mergeConfig(userConfig: Partial<HudConfig>): HudConfig {
     showTokenBreakdown: typeof migrated.display?.showTokenBreakdown === 'boolean'
       ? migrated.display.showTokenBreakdown
       : DEFAULT_CONFIG.display.showTokenBreakdown,
+    tokenBreakdownThreshold: typeof migrated.display?.tokenBreakdownThreshold === 'number'
+      ? validateThreshold(migrated.display.tokenBreakdownThreshold, 100)
+      : DEFAULT_CONFIG.display.tokenBreakdownThreshold,
     showUsage: typeof migrated.display?.showUsage === 'boolean'
       ? migrated.display.showUsage
       : DEFAULT_CONFIG.display.showUsage,

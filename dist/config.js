@@ -33,6 +33,7 @@ export const DEFAULT_CONFIG = {
         showDuration: false,
         showSpeed: false,
         showTokenBreakdown: true,
+        tokenBreakdownThreshold: 85,
         showUsage: true,
         usageBarEnabled: true,
         showTools: false,
@@ -200,6 +201,9 @@ export function mergeConfig(userConfig) {
         showTokenBreakdown: typeof migrated.display?.showTokenBreakdown === 'boolean'
             ? migrated.display.showTokenBreakdown
             : DEFAULT_CONFIG.display.showTokenBreakdown,
+        tokenBreakdownThreshold: typeof migrated.display?.tokenBreakdownThreshold === 'number'
+            ? validateThreshold(migrated.display.tokenBreakdownThreshold, 100)
+            : DEFAULT_CONFIG.display.tokenBreakdownThreshold,
         showUsage: typeof migrated.display?.showUsage === 'boolean'
             ? migrated.display.showUsage
             : DEFAULT_CONFIG.display.showUsage,

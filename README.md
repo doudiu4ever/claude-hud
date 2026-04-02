@@ -159,7 +159,8 @@ Edit `~/.claude/plugins/claude-hud/config.json` directly for advanced settings s
 | `display.showUsage` | boolean | true | Show Claude subscriber usage limits when available |
 | `display.usageBarEnabled` | boolean | true | Display usage as visual bar instead of text |
 | `display.sevenDayThreshold` | 0-100 | 80 | Show 7-day usage when >= threshold (0 = always) |
-| `display.showTokenBreakdown` | boolean | true | Show token details at high context (85%+) |
+| `display.showTokenBreakdown` | boolean | true | Show token details at high context |
+| `display.tokenBreakdownThreshold` | 0-100 | 85 | Context % threshold to show token breakdown (0 = always) |
 | `display.showTools` | boolean | false | Show tools activity line |
 | `display.showAgents` | boolean | false | Show agents activity line |
 | `display.showTodos` | boolean | false | Show todos progress line |
